@@ -53,13 +53,6 @@
 			remoteGlobalIDString = 8AFAEAFB1E6E32E900E09B68;
 			remoteInfo = DownTests;
 		};
-		D4C77E06240EEB64004675B3 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = D49980AF1FA560F8004EE42E /* Down.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = EEBA153A2344845500B54ECB;
-			remoteInfo = DownSnapshotTests;
-		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -193,7 +186,6 @@
 			children = (
 				D49980B51FA560F8004EE42E /* Down.framework */,
 				D49980B71FA560F8004EE42E /* DownTests.xctest */,
-				D4C77E07240EEB64004675B3 /* DownSnapshotTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -262,6 +254,7 @@
 					};
 					8A07D7CE1F085EC6004D7141 = {
 						CreatedOnToolsVersion = 8.3.3;
+						DevelopmentTeam = HMQ397Y4Z7;
 						LastSwiftMigration = 1020;
 					};
 				};
@@ -304,13 +297,6 @@
 			fileType = wrapper.cfbundle;
 			path = DownTests.xctest;
 			remoteRef = D49980B61FA560F8004EE42E /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		D4C77E07240EEB64004675B3 /* DownSnapshotTests.xctest */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.cfbundle;
-			path = DownSnapshotTests.xctest;
-			remoteRef = D4C77E06240EEB64004675B3 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 /* End PBXReferenceProxy section */
@@ -574,7 +560,7 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = HMQ397Y4Z7;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Down-Example",
@@ -594,7 +580,7 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = HMQ397Y4Z7;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Down-Example",
