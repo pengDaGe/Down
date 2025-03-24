@@ -15,6 +15,7 @@
 #else
 
 import WebKit
+import SafariServices
 
 // MARK: - Public API
 
@@ -234,8 +235,21 @@ extension DownView: WKNavigationDelegate {
                 }
             }
 
+            // 判断 URL 协议是否是 http 或 https
+//            if let scheme = url.scheme,scheme.lowercased() == "http" || scheme.lowercased() == "https" {
+//                decisionHandler(.cancel)
+//                // 如果是 http 或 https 协议，使用 SFSafariViewController 打开
+//                let safariViewController = SFSafariViewController(url: url)
+//                
+//                // 获取当前的 ViewController 并展示 SFSafariViewController
+//                if let viewController = self.viewController() {
+//                    viewController.present(safariViewController, animated: true, completion: nil)
+//                }
+//            } else {
+                // 如果是其他协议，使用 UIApplication.shared.open 来打开
             decisionHandler(.cancel)
-            openURL(url: url)
+                openURL(url: url)
+//            }
         default:
             decisionHandler(.allow)
         }
@@ -244,12 +258,37 @@ extension DownView: WKNavigationDelegate {
     @available(iOSApplicationExtension, unavailable)
     func openURL(url: URL) {
         #if os(iOS)
-            _ = UIApplication.shared.openURL(url)
+        if #available(iOS 10.0, *) {
+                // iOS 10 及以上使用新方法
+                UIApplication.shared.open(url, options: [:], completionHandler: { success in
+                    if success {
+                        print("URL successfully opened")
+                    } else {
+                        print("Failed to open URL")
+                    }
+                })
+            } else {
+                // iOS 9 及以下使用旧方法
+                UIApplication.shared.openURL(url)
+            }
         #elseif os(macOS)
             NSWorkspace.shared.open(url)
         #endif
     }
 
+    func viewController() -> UIViewController? {
+        var viewController: UIViewController? = nil
+        var responder: UIResponder? = self
+        while responder != nil {
+            if let controller = responder as? UIViewController {
+                viewController = controller
+                break
+            }
+            responder = responder?.next
+        }
+        return viewController
+    }
+    
     public func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
         didLoadSuccessfully?()
     }

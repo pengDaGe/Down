@@ -17,6 +17,14 @@ final class ViewController: UIViewController {
         renderDownInWebView()
     }
     
+    override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
+        if keyPath == "contentSize" {
+            if let scrollView = object as? UIScrollView {
+                let height = scrollView.contentSize.height
+                print("WebView内容高度变化: \(height)")
+            }
+        }
+    }
 }
 
 private extension ViewController {
@@ -37,10 +45,17 @@ private extension ViewController {
             view.addSubview(downView)
             constrain(subview: downView)
             createStatusBarBackgrounds(above: downView)
+            
+            downView.scrollView.addObserver(self, forKeyPath: "contentSize", options: .new, context: nil)
+
+            
+            
         } catch {
             showError(message: error.localizedDescription)
         }
     }
+    
+    
     
     func createStatusBarBackgrounds(above subview: UIView) {
         let blurEffect = UIBlurEffect(style: .prominent)
